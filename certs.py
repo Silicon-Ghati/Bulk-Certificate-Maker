@@ -23,7 +23,7 @@ for idx, i in enumerate(name_list):
     text_color = (0, 137, 209)
     font = ImageFont.truetype("AlexBrush-Regular.ttf", 250, encoding="unic")
     d.text(location, i.title(), fill=text_color,font=font)
-    im.save("certificate_"+i+".pdf")
+    im.save("out/certificate_"+i+".pdf")
     print("(%d/%d) Certificate Created for:  %s" % (idx+1, max_no, i.title()))
     
 print("""\n*************************
