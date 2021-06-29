@@ -9,6 +9,10 @@ import pandas as pd
 #Import the file that contains all the details
 data = pd.read_excel("file.xlsx")
 
+#export id to excel sheet
+import xlwt
+from xlwt import Workbook
+
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
 Email_list = data['Email'].to_list()
@@ -21,6 +25,15 @@ max_no = len(name_list)
 SENDER_EMAIL = ''  # SET THIS
 SENDER_EMAIL_PASSWORD = ''  # SET THIS
 idpass = SMTP(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
+
+#create excel sheet
+book = xlwt.Workbook(encoding="utf-8")
+
+sheet = book.add_sheet("Sheet")
+
+sheet.write(0, 0, "Name")
+sheet.write(0, 1, "Email")
+sheet.write(0, 2, "Certificate ID")
 
 #The Loops for creating certificates in bulk
 
@@ -38,6 +51,12 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     d.text(locationid, id, fill=text_color,font=font)
     im.save("out/certificate_"+mname+".pdf")
     print("Certificate Created for:  %s" % (mname.title()))
+    print("Exporting data to excel sheet")
+    sheet.write((i+1), 0, (mname.title()))
+    sheet.write((i+1), 1, (memail.title()))
+    sheet.write((i+1), 2, (id))
+    book.save("out/verify.xls")
+    
     mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (mname)
     title = 'Enter your title'
     email = memail.title()
