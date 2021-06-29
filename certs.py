@@ -57,7 +57,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
       id = 'Add your certification ID here %d' % (i+1)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fontname.ttf", 250, encoding="unic")
-    d.text(location, mname.title(), fill=text_color, font=font)
+    d.text(location, mname.title(), fill=text_color, font=font, anchor='m')
     font = ImageFont.truetype("fontid.ttf", 50, encoding="unic")
     d.text(locationid, id, fill=text_color,font=font)
     d.text(locationdate, tdy, fill=text_color,font=font)
