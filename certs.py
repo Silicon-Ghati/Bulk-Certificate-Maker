@@ -23,30 +23,28 @@ SENDER_EMAIL_PASSWORD = ''  # SET THIS
 idpass = SMTP(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
 
 #The Loops for creating certificates in bulk
-# for i in name_list:
-for i, j in zip(name_list, Email_list):
+
+for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
 
     im = Image.open("cert.jpg")
     d = ImageDraw.Draw(im)
     location = (275, 1050)
     locationid= (100, 100)
-+   id='Add your certification ID here'
+    id = 'Add your certification ID here %d' % (i+1)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("AlexBrush-Regular.ttf", 250, encoding="unic")
-    d.text(location, i.title(), fill=text_color,font=font)
+    d.text(location, mname.title(), fill=text_color, font=font)
     font = ImageFont.truetype("tnr.ttf", 50, encoding="unic")
     d.text(locationid, id, fill=text_color,font=font)
-
-    
-    im.save("out/certificate_"+i+".pdf")
-    print("Certificate Created for:  %s" % (i.title()))
-    mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (i)
+    im.save("out/certificate_"+mname+".pdf")
+    print("Certificate Created for:  %s" % (mname.title()))
+    mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (mname)
     title = 'Enter your title'
-    email = j.title()
+    email = memail.title()
     contents = [mailtext, inline(LOGO)]
-    print("Emailing this %s to %s" % (i.title(), j.title()))
+    print("Emailing this %s to %s" % (mname.title(), memail.title()))
     idpass.send(email, title,
-        contents, attachments="out/certificate_"+i+".pdf")
+        contents, attachments="out/certificate_"+mname+".pdf")
     
 print("""\n*************************
 All Certificates Created and mailed to respective emails.
