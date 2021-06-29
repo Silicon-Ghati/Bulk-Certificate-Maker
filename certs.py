@@ -66,7 +66,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     font = ImageFont.truetype("fontid.ttf", 50, encoding="unic")
     d.text(locationid, id, fill=text_color,font=font)
     d.text(locationdate, tdy, fill=text_color,font=font)
-    im.save("out/certificate_"+mname+".pdf")
+    im.save("out/certificate_"+mname+"_"+id+".pdf")
     print("Certificate Created for:  %s" % (mname.title()))
     print("Exporting data to excel sheet")
     sheet.write((i+1), 0, (mname.title()))
@@ -80,7 +80,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     contents = [mailtext, inline(LOGO)]
     print("Emailing this %s to %s" % (mname.title(), memail.title()))
     idpass.send(email, title,
-        contents, attachments="out/certificate_"+mname+".pdf")
+        contents, attachments=("out/certificate_"+mname+"_"+id+".pdf"))
     
 print("""\n*************************
 All Certificates Created and mailed to respective emails.
