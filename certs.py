@@ -14,6 +14,7 @@ import xlwt
 from xlwt import Workbook
 
 import datetime
+
 now = datetime.datetime.now()
 tdy = now.strftime("%d-%m-%Y")
 
@@ -48,7 +49,12 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     locationid= (100, 100)
     locationdate= (1000, 3000)
     #enter your uid for certificate here
-    id = 'Add your certification ID here %d' % (i+1)
+    if (i+1) < 10:
+      id = 'Add your certification ID here 00%d' % (i+1)
+    elif (i+1) >= 10  and i < 100:
+      id = 'Add your certification ID here 0%d' % (i+1)
+    else :
+      id = 'Add your certification ID here %d' % (i+1)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fontname.ttf", 250, encoding="unic")
     d.text(location, mname.title(), fill=text_color, font=font)
