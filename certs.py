@@ -40,6 +40,7 @@ sheet = book.add_sheet("Sheet")
 sheet.write(0, 0, "Name")
 sheet.write(0, 1, "Email")
 sheet.write(0, 2, "Certificate ID")
+start_no=30
 
 #The Loops for creating certificates in bulk
 
@@ -52,12 +53,12 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     locationdate= (1000, 3000)
 
     #enter your uid for certificate here
-    if (i+1) < 10:
+    if (start_no + i + 1) < 10:
       id = 'Add your certification ID here 00%d' % (i+1)
-    elif (i+1) >= 10  and (i+1) < 100:
+    elif (start_no + i + 1) >= 10  and (start_no +  i + 1) < 100:
       id = 'Add your certification ID here 0%d' % (i+1)
     else :
-      id = 'Add your certification ID here %d' % (i+1)
+        id = 'ARCGMIPT2021I_%d' % (start_no + i + 1)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fontname.ttf", 250, encoding="unic")
     w,h = font.getsize(mname.title())
