@@ -18,17 +18,19 @@ import datetime
 now = datetime.datetime.now()
 tdy = now.strftime("%d-%m-%Y")
 
+
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
 Email_list = data['Email'].to_list()
 LOGO='logo.png'
 
+
 #Determining the length of the list
 max_no = len(name_list)
 
-#SENDER_EMAIL = ''  # SET THIS
-#SENDER_EMAIL_PASSWORD = ''  # SET THIS
-#idpass = SMTP(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
+SENDER_EMAIL = ''  # SET THIS
+SENDER_EMAIL_PASSWORD = ''  # SET THIS
+idpass = SMTP(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
 
 #create excel sheet
 book = xlwt.Workbook(encoding="utf-8")
@@ -48,6 +50,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     location = (275, 1050)
     locationid= (100, 100)
     locationdate= (1000, 3000)
+
     #enter your uid for certificate here
     if (i+1) < 10:
       id = 'Add your certification ID here 00%d' % (i+1)
@@ -65,18 +68,18 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     im.save("out/certificate_"+mname+".pdf")
     print("Certificate Created for:  %s" % (mname.title()))
     print("Exporting data to excel sheet")
-#    sheet.write((i+1), 0, (mname.title()))
-#    sheet.write((i+1), 1, (memail.title()))
-#    sheet.write((i+1), 2, (id))
-#    book.save("out/verify.xls")
-#    #Enter your contents and title for the automatically generated email
-#    mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (mname)
-#    title = 'Enter your title'
-#    email = memail.title()
-#    contents = [mailtext, inline(LOGO)]
-#    print("Emailing this %s to %s" % (mname.title(), memail.title()))
-#    idpass.send(email, title,
-#        contents, attachments="out/certificate_"+mname+".pdf")
+    sheet.write((i+1), 0, (mname.title()))
+    sheet.write((i+1), 1, (memail.title()))
+    sheet.write((i+1), 2, (id))
+    book.save("out/verify.xls")
+    #Enter your contents and title for the automatically generated email
+    mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (mname)
+    title = 'Enter your title'
+    email = memail.title()
+    contents = [mailtext, inline(LOGO)]
+    print("Emailing this %s to %s" % (mname.title(), memail.title()))
+    idpass.send(email, title,
+        contents, attachments="out/certificate_"+mname+".pdf")
     
 print("""\n*************************
 All Certificates Created and mailed to respective emails.
