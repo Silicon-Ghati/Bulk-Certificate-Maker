@@ -13,6 +13,11 @@ data = pd.read_excel("file.xlsx")
 import xlwt
 from xlwt import Workbook
 
+import datetime
+now = datetime.datetime.now()
+tdy = now.strftime("%d-%m-%Y")
+
+
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
 Email_list = data['Email'].to_list()
@@ -43,6 +48,8 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     d = ImageDraw.Draw(im)
     location = (275, 1050)
     locationid= (100, 100)
+    locationdate= (1000, 3000)
+
     #enter your uid for certificate here
     id = 'Add your certification ID here %d' % (i+1)
     text_color = (0, 137, 209)
@@ -50,6 +57,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     d.text(location, mname.title(), fill=text_color, font=font)
     font = ImageFont.truetype("fontid.ttf", 50, encoding="unic")
     d.text(locationid, id, fill=text_color,font=font)
+    d.text(locationdate, tdy, fill=text_color,font=font)
     im.save("out/certificate_"+mname+".pdf")
     print("Certificate Created for:  %s" % (mname.title()))
     print("Exporting data to excel sheet")
