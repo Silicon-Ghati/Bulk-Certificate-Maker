@@ -29,9 +29,13 @@ for i, j in zip(name_list, Email_list):
     im = Image.open("cert.jpg")
     d = ImageDraw.Draw(im)
     location = (275, 1050)
+    locationid= (100, 100)
++   id='Add your certification ID here'
     text_color = (0, 137, 209)
     font = ImageFont.truetype("AlexBrush-Regular.ttf", 250, encoding="unic")
     d.text(location, i.title(), fill=text_color,font=font)
+    font = ImageFont.truetype("tnr.ttf", 50, encoding="unic")
+    d.text(locationid, id, fill=text_color,font=font
 
     
     im.save("out/certificate_"+i+".pdf")
