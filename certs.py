@@ -54,7 +54,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     #enter your uid for certificate here
     if (i+1) < 10:
       id = 'Add your certification ID here 00%d' % (i+1)
-    elif (i+1) >= 10  and i < 100:
+    elif (i+1) >= 10  and (i+1) < 100:
       id = 'Add your certification ID here 0%d' % (i+1)
     else :
       id = 'Add your certification ID here %d' % (i+1)
