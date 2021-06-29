@@ -67,7 +67,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     d.text(locationid, id, fill=text_color,font=font)
     d.text(locationdate, tdy, fill=text_color,font=font)
     im.save("out/certificate_"+mname+"_"+id+".pdf")
-    print("Certificate Created for:  %s" % (mname.title()))
+    print("\n\n(%d/%d) Certificate Created for:  %s" % (i+1, max_no, mname.title()))
     print("Exporting data to excel sheet")
     sheet.write((i+1), 0, (mname.title()))
     sheet.write((i+1), 1, (memail.title()))
@@ -78,7 +78,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     title = 'Enter your title'
     email = memail.title()
     contents = [mailtext, inline(LOGO)]
-    print("Emailing this %s to %s" % (mname.title(), memail.title()))
+    print("Emailing certificate of %s to %s" % (mname.title(), memail.title()))
     idpass.send(email, title,
         contents, attachments=("out/certificate_"+mname+"_"+id+".pdf"))
     
