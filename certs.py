@@ -43,6 +43,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     d = ImageDraw.Draw(im)
     location = (275, 1050)
     locationid= (100, 100)
+    #enter your uid for certificate here
     id = 'Add your certification ID here %d' % (i+1)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fontname.ttf", 250, encoding="unic")
@@ -56,7 +57,7 @@ for i, (mname, memail) in enumerate(zip(name_list, Email_list)):
     sheet.write((i+1), 1, (memail.title()))
     sheet.write((i+1), 2, (id))
     book.save("out/verify.xls")
-    
+    #Enter your contents and title for the automatically generated email
     mailtext = 'Dear %s,\n\n. Enter your text for the automatically generated emai\n\n' % (mname)
     title = 'Enter your title'
     email = memail.title()
