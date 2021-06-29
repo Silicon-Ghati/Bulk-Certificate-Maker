@@ -35,7 +35,7 @@ for i, j in zip(name_list, Email_list):
     font = ImageFont.truetype("AlexBrush-Regular.ttf", 250, encoding="unic")
     d.text(location, i.title(), fill=text_color,font=font)
     font = ImageFont.truetype("tnr.ttf", 50, encoding="unic")
-    d.text(locationid, id, fill=text_color,font=font
+    d.text(locationid, id, fill=text_color,font=font)
 
     
     im.save("out/certificate_"+i+".pdf")
