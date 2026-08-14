@@ -3,3 +3,8 @@ file.xlsx
 cert.jpg
 .~lock.file.xlsx#
 logo.png
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.DS_Store
